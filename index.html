@@ -81,4 +81,107 @@ footer a { color: #aaa; text-decoration: underline; margin: 0 8px; }
 
 <header>
 <div class="logo">🔐 Serrurier Paris Urgent</div>
-<a class="tel" href="tel:+33100000000">📞 Appeler
+<a class="tel" href="tel:+33100000000">📞 Appeler maintenant</a>
+</header>
+
+<section class="hero">
+<h1>Serrurier Paris Urgence<br>Intervention en 30 minutes</h1>
+<p>Disponible 24h/24 — 7j/7 — Devis gratuit — Artisans certifiés</p>
+<div class="cta-group">
+<a class="btn-primary" href="tel:+33100000000">📞 Appeler maintenant</a>
+<a class="btn-secondary" href="#devis">✉️ Demander un devis</a>
+</div>
+</section>
+
+<section class="arguments">
+<div class="arg-card"><div class="icon">⚡️</div><h3>Intervention<br>en 30 min</h3></div>
+<div class="arg-card"><div class="icon">🕐</div><h3>Disponible<br>24h/24 — 7j/7</h3></div>
+<div class="arg-card"><div class="icon">💶</div><h3>Devis gratuit<br>sans engagement</h3></div>
+<div class="arg-card"><div class="icon">✅</div><h3>Artisans<br>certifiés</h3></div>
+</section>
+
+<section class="form-section" id="devis">
+<h2>Demandez votre devis gratuit</h2>
+<p>Réponse en moins de 15 minutes</p>
+<form id="contact-form" action="https://formspree.io/f/meepoabv" method="POST">
+<input type="text" name="prenom" placeholder="Votre prénom" required />
+<input type="tel" name="telephone" placeholder="Votre numéro de téléphone" required />
+<select name="arrondissement" required>
+<option value="" disabled selected>Votre arrondissement</option>
+<option>Paris 1er</option><option>Paris 2ème</option><option>Paris 3ème</option>
+<option>Paris 4ème</option><option>Paris 5ème</option><option>Paris 6ème</option>
+<option>Paris 7ème</option><option>Paris 8ème</option><option>Paris 9ème</option>
+<option>Paris 10ème</option><option>Paris 11ème</option><option>Paris 12ème</option>
+<option>Paris 13ème</option><option>Paris 14ème</option><option>Paris 15ème</option>
+<option>Paris 16ème</option><option>Paris 17ème</option><option>Paris 18ème</option>
+<option>Paris 19ème</option><option>Paris 20ème</option>
+<option>Boulogne-Billancourt</option><option>Vincennes</option><option>Autre banlieue</option>
+</select>
+<textarea name="description" rows="3" placeholder="Décrivez rapidement votre besoin (ex: porte claquée, serrure bloquée...)"></textarea>
+<button type="submit">✅ Recevoir un devis gratuit</button>
+</form>
+<p class="rgpd">En soumettant ce formulaire, vous acceptez que vos données soient utilisées pour vous contacter dans le cadre de votre demande. Conformément au RGPD, vous pouvez demander leur suppression à tout moment. <a href="/politique-confidentialite.html">Politique de confidentialité</a></p>
+</section>
+
+<section class="zones">
+<h2>Zones d'intervention</h2>
+<div class="arr">
+<span>Paris 1er</span><span>Paris 2ème</span><span>Paris 3ème</span>
+<span>Paris 4ème</span><span>Paris 5ème</span><span>Paris 6ème</span>
+<span>Paris 7ème</span><span>Paris 8ème</span><span>Paris 9ème</span>
+<span>Paris 10ème</span><span>Paris 11ème</span><span>Paris 12ème</span>
+<span>Paris 13ème</span><span>Paris 14ème</span><span>Paris 15ème</span>
+<span>Paris 16ème</span><span>Paris 17ème</span><span>Paris 18ème</span>
+<span>Paris 19ème</span><span>Paris 20ème</span>
+<span>Boulogne</span><span>Vincennes</span>
+</div>
+</section>
+
+<footer>
+<p>© 2026 Serrurier Paris Urgent — Tous droits réservés</p>
+<p style="margin-top:8px">
+<a href="/mentions-legales.html">Mentions légales</a>
+<a href="/politique-confidentialite.html">Politique de confidentialité</a>
+</p>
+</footer>
+
+<script>
+document.getElementById('contact-form').addEventListener('submit', async function(e) {
+e.preventDefault();
+const form = e.target;
+const btn = form.querySelector('button[type="submit"]');
+btn.textContent = 'Envoi en cours...';
+btn.disabled = true;
+
+const data = {
+prenom: form.prenom.value,
+telephone: form.telephone.value,
+arrondissement: form.arrondissement.value,
+description: form.description.value,
+_subject: 'Nouveau lead — Serrurier Paris Urgent'
+};
+
+try {
+const res = await fetch('https://formspree.io/f/meepoabv', {
+method: 'POST',
+headers: { 'Content-Type': 'application/json' },
+body: JSON.stringify(data)
+});
+
+if (res.ok) {
+window.location.href = '/merci.html';
+} else {
+alert('Erreur lors de l\'envoi. Veuillez réessayer ou appeler directement.');
+btn.textContent = '✅ Recevoir un devis gratuit';
+btn.disabled = false;
+}
+} catch(err) {
+alert('Erreur de connexion. Veuillez réessayer.');
+btn.textContent = '✅ Recevoir un devis gratuit';
+btn.disabled = false;
+}
+});
+</script>
+
+</body>
+</html>
